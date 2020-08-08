@@ -7,18 +7,26 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" text>HOME</v-btn>
-      <v-btn to="/login" text>LOGIN</v-btn>
-      <v-btn to="/register" text>REGISTER</v-btn>
-      <v-btn to="/profile" text>USER</v-btn>
-      <v-btn to="/login" text>LOGOUT</v-btn>
+      <v-btn to="/login" v-if="!user" text>LOGIN</v-btn>
+      <v-btn to="/register" v-if="!user" text>REGISTER</v-btn>
+      <v-btn to="/profile" v-if="user" text>{{user.displayName}}</v-btn>
+      <v-btn to="/login" v-if="user" text>LOGOUT</v-btn>
     </v-app-bar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Navigation",
-  components: {},
+  computed: {
+    ...mapGetters(['getUser']),
+    user() {
+      console.log('user changed in navigation')
+      return this.getUser
+    }
+  }
 };
 </script>
 

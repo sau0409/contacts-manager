@@ -11,8 +11,8 @@
                 <v-row>
                   <v-col>
                     <v-btn class="ma-1" depressed to="/contacts">Contacts</v-btn>
-                    <v-btn class="ma-1" depressed to="/login">Login</v-btn>
-                    <v-btn class="ma-1" depressed to="/register">Register</v-btn>
+                    <v-btn class="ma-1" v-if="!user" depressed to="/login">Login</v-btn>
+                    <v-btn class="ma-1" v-if="!user" depressed to="/register">Register</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Home",
   data() {
@@ -34,5 +36,11 @@ export default {
         "This simple app manages contacts, allows people to add, update or delete contacts. It's a good example of a Single Page Application which includes connection to a database and routing. It's a practical way to learn VueJs and Firebase.",
     };
   },
+  computed: {
+    ...mapGetters(['getUser']),
+    user() {
+      return this.getUser
+    }
+  }
 };
 </script>
