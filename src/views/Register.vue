@@ -11,7 +11,7 @@
                 <v-btn v-bind="attrs" @click="snackbar = false">Close</v-btn>
               </template>
             </v-snackbar>
-            <v-form ref="form" @submit.prevent>
+            <v-form ref="form" @submit.prevent="registerUser">
               <v-card-text>
                 <v-text-field :type="'text'" v-model="username" label="Name" :rules="nameRules" />
                 <v-text-field :type="'email'" label="Email" v-model="email" :rules="emailRules" />
@@ -41,6 +41,9 @@
 </template>
 
 <script>
+import db from "../db.js";
+import { mapActions } from "vuex";
+
 export default {
   name: "Register",
   data() {
@@ -70,6 +73,41 @@ export default {
       ],
       matchPassword: [(v) => v === this.password || "Password is not matching"],
     };
+  },
+  methods: {
+    ...mapActions(["updateUser", 'onMounted']),
+    registerUser() {
+      if (this.$refs.form.validate()) {
+        console.log("Registering user");
+        db.app
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then((userCred) => {
+            userCred.user
+              .updateProfile({
+                displayName: this.username,
+              })
+              .then(() => {
+                console.log(userCred.user.displayName);
+                console.log('triggered action from register');
+                this.updateUser(userCred.user);
+                this.$router.push("/");
+              })
+              .catch((error) => {
+                console.log(error);
+                this.message = error.message;
+                this.snackbar = true;
+                this.snackbarBcg = "orange";
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+            this.message = error.message;
+            this.snackbar = true;
+            this.snackbarBcg = "orange";
+          });
+      }
+    },
   },
 };
 </script>

@@ -19,29 +19,30 @@
 import { mapGetters, mapActions } from "vuex";
 import db from "../db.js";
 
-
 export default {
   name: "Navigation",
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(["getUser"]),
     user() {
-      console.log('user changed in navigation')
-      return this.getUser
-    }
+      console.log("user changed in navigation");
+      return this.getUser;
+    },
   },
   methods: {
-    ...mapActions(['updateUser']),
-      logOut(){
-           db.app.auth().signOut()
-           .then(()=> {
-              console.log('looginf out');
-              this.updateUser();
-              this.$router.push('/login');
-           })
-           .catch((error) => {
-             console.log(error);
-           })
-      }
+    ...mapActions(["updateUser", "onMounted"]),
+    logOut() {
+      db.app
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("looginf out");
+          this.updateUser();
+          this.$router.push("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   }
 };
 </script>
@@ -52,7 +53,7 @@ export default {
   text-decoration: none;
 }
 
- [v-cloak]{
-     display: none;
- }
+[v-cloak] {
+  display: none;
+}
 </style>

@@ -40,6 +40,7 @@
 
 <script>
 import db from "../db.js";
+import { mapActions } from 'vuex';
 
 export default {
   name: "Login",
@@ -56,6 +57,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['updateUser']),
     authenticate() {
       if (this.$refs.form.validate()) {
         console.log("logging in user");
@@ -65,6 +67,7 @@ export default {
           .then((user) => {
             console.log("logged in");
             console.log(user);
+           // this.updateUser(user);
             this.email = "";
             this.password = "";
             this.$router.push("/");
