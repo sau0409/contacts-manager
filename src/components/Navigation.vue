@@ -9,7 +9,7 @@
       <v-btn to="/" text>HOME</v-btn>
       <v-btn to="/login" v-if="!user" v-cloak text>LOGIN</v-btn>
       <v-btn to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
-      <v-btn to="/profile" v-if="user" v-cloak text>{{user.email}}</v-btn>
+      <v-btn to="/profile" v-if="user" v-cloak text>{{username}}</v-btn>
       <v-btn v-if="user" @click="logOut" v-cloak text>LOGOUT</v-btn>
     </v-app-bar>
   </div>
@@ -22,11 +22,15 @@ import db from "../db.js";
 export default {
   name: "Navigation",
   computed: {
-    ...mapGetters(["getUser"]),
+    ...mapGetters(["getUser", "getUsername"]),
     user() {
       console.log("user changed in navigation");
       return this.getUser;
     },
+    username() {
+      console.log("username changed in navigation");
+      return this.getUsername
+    }
   },
   methods: {
     ...mapActions(["updateUser", "onMounted"]),
