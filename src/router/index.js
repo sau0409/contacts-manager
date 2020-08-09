@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import Contacts from '../views/Contacts.vue'
+import UpdateContacts from '../views/UpdateContacts.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ Vue.use(VueRouter)
     path: '/contacts',
     name: 'Contacts',
     component: Contacts
+  },
+  {
+    path: '/updatecontacts',
+    name: 'UpdateContacts',
+    component: UpdateContacts
   }
 ]
 
