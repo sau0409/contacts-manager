@@ -83,6 +83,6 @@ export default {
       console.log("triggeting fetch contact");
       this.fetchContacts(this.getUser.uid);
     }
-  },
+  }
 };
 </script>

@@ -7,7 +7,7 @@
 
 <script>
 import Navigation from "./components/Navigation.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -15,11 +15,14 @@ export default {
     Navigation,
   },
   methods: {
-    ...mapActions(['onMounted'])
+    ...mapActions(["onMounted", "fetchContacts"]),
+  },
+  computed: {
+    ...mapGetters(["getUser"]),
   },
   mounted() {
-    console.log('on mounted');
+    console.log("on mounted");
     this.onMounted();
-  }
+  },
 };
 </script>
