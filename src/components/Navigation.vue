@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateUser", "onMounted"]),
+    ...mapActions(["updateUser", "onMounted", "updateContacts"]),
     logOut() {
       db.app
         .auth()
@@ -41,6 +41,7 @@ export default {
         .then(() => {
           console.log("looginf out");
           this.updateUser();
+          this.updateContacts();
           this.$router.push("/login");
         })
         .catch((error) => {

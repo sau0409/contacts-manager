@@ -22,7 +22,6 @@ const actions = {
             if (user) {
                 dispatch('fetchContacts', user.uid);
                 commit('setUser', user);
-                
             }
 
         })
@@ -46,7 +45,14 @@ const actions = {
             })
         })
         commit('setContacts', contactsArr);
-    }
+    },
+
+    updateContacts({
+        commit
+    }, contacts) {
+        console.log('action commiting contacts');
+        commit('setContacts', contacts);
+    },
 };
 
 const mutations = {
