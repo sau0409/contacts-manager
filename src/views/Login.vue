@@ -11,7 +11,7 @@
                 <v-btn v-bind="attrs" @click="snackbar = false">Close</v-btn>
               </template>
             </v-snackbar>
-            <v-form ref="form" @submit.prevent="">
+            <v-form ref="form" @submit.prevent="authenticate">
               <v-card-text>
                 <v-text-field :type="'email'" v-model="email" label="Email" :rules="emailRules" />
                 <v-text-field
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import db from "../db.js";
+
 export default {
   name: "Login",
   data() {
@@ -52,6 +54,29 @@ export default {
       emailRules: [(v) => !!v || "E-mail is required"],
       passwordRules: [(v) => !!v || "Password is required"],
     };
+  },
+  methods: {
+    authenticate() {
+      if (this.$refs.form.validate()) {
+        console.log("logging in user");
+        db.app
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then((user) => {
+            console.log("logged in");
+            console.log(user);
+            this.email = "";
+            this.password = "";
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.message = error.message;
+            this.snackbar = true;
+            this.snackbarBcg = 'orange';
+          });
+      }
+    },
   },
 };
 </script>

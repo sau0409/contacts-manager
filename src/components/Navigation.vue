@@ -7,16 +7,18 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" text>HOME</v-btn>
-      <v-btn to="/login" v-if="!user" text>LOGIN</v-btn>
-      <v-btn to="/register" v-if="!user" text>REGISTER</v-btn>
-      <v-btn to="/profile" v-if="user" text>{{user.displayName}}</v-btn>
-      <v-btn to="/login" v-if="user" text>LOGOUT</v-btn>
+      <v-btn to="/login" v-if="!user" v-cloak text>LOGIN</v-btn>
+      <v-btn to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
+      <v-btn to="/profile" v-if="user" v-cloak text>{{user.email}}</v-btn>
+      <v-btn v-if="user" @click="logOut" v-cloak text>LOGOUT</v-btn>
     </v-app-bar>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import db from "../db.js";
+
 
 export default {
   name: "Navigation",
@@ -26,6 +28,20 @@ export default {
       console.log('user changed in navigation')
       return this.getUser
     }
+  },
+  methods: {
+    ...mapActions(['updateUser']),
+      logOut(){
+           db.app.auth().signOut()
+           .then(()=> {
+              console.log('looginf out');
+              this.updateUser();
+              this.$router.push('/login');
+           })
+           .catch((error) => {
+             console.log(error);
+           })
+      }
   }
 };
 </script>
@@ -35,4 +51,8 @@ export default {
   color: black;
   text-decoration: none;
 }
+
+ [v-cloak]{
+     display: none;
+ }
 </style>
