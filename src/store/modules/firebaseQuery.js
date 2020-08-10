@@ -2,7 +2,24 @@ import db from '../../db.js';
 
 
 const state = {
-    contacts: [],
+    contacts: [        {
+        name: "Police",
+        phone: "100",
+        email: "police@gov.in",
+        id: "1"
+      },
+      {
+        name: "Ambulance",
+        phone: "101",
+        email: "ambulance@gov.in",
+        id: "2"
+      },
+      {
+        name: "Fire",
+        phone: "102",
+        email: "fire_departemnt@gov.in",
+        id: "3"
+      }],
     user: null,
     username: null
 }
@@ -41,7 +58,12 @@ const actions = {
         console.log('contact action triggered');
         db.collection("users").doc(userId).collection("contacts").onSnapshot((snapshot) => {
             snapshot.forEach((el) => {
-                contactsArr.push(el.data());
+                contactsArr.push({
+                    name: el.data().name,
+                    phone: el.data().phone,
+                    email: el.data().email,
+                    id: el.id
+                });
             })
         })
         commit('setContacts', contactsArr);

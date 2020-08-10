@@ -10,19 +10,19 @@
               to="/updatecontacts"
               class="ma-5"
             >
-              <v-card-title class="justify-center">Add Contact</v-card-title>
+              <v-container class="text-center mt-14">
+                <v-row>
+                  <v-col>
+                    <v-btn icon text>
+                      <v-icon size="100">mdi-plus-circle</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
             </v-card>
             <v-card
               v-for="(contact) in contacts"
-              :key="contact.email"
-              style="width: 350px; height: 200px"
-              class="ma-5"
-            >
-              <ContactShow :contact="contact"></ContactShow>
-            </v-card>
-            <v-card
-              v-for="(contact, index) in defaultContacts"
-              :key="index"
+              :key="contact.id"
               style="width: 350px; height: 200px"
               class="ma-5"
             >
@@ -47,23 +47,6 @@ export default {
   data() {
     return {
       heading: "Contacts",
-      defaultContacts: [
-        {
-          name: "Police",
-          phone: "100",
-          email: "police@gov.in",
-        },
-        {
-          name: "Ambulance",
-          phone: "101",
-          email: "ambulance@gov.in",
-        },
-        {
-          name: "Fire",
-          phone: "102",
-          email: "fire_departemnt@gov.in",
-        },
-      ],
     };
   },
   methods: {
