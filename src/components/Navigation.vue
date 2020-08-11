@@ -41,7 +41,26 @@ export default {
         .then(() => {
           console.log("looginf out");
           this.updateUser();
-          this.updateContacts();
+          this.updateContacts([
+        {
+            name: "Police",
+            phone: "100",
+            email: "police@gov.in",
+            id: "1"
+        },
+        {
+            name: "Ambulance",
+            phone: "101",
+            email: "ambulance@gov.in",
+            id: "2"
+        },
+        {
+            name: "Fire",
+            phone: "102",
+            email: "fire_departemnt@gov.in",
+            id: "3"
+        }
+    ]);
           this.$router.push("/login");
         })
         .catch((error) => {

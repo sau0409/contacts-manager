@@ -36,7 +36,12 @@ Vue.use(VueRouter)
     component: Contacts
   },
   {
-    path: '/updatecontacts',
+    path: '/updatecontacts/:userid/:contactid',
+    name: 'UpdateContacts',
+    component: UpdateContacts
+  },
+  {
+    path: '/updatecontacts/:userid',
     name: 'UpdateContacts',
     component: UpdateContacts
   }

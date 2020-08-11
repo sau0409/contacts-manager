@@ -3,8 +3,8 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card>
-            <v-card-title class="justify-center" v-text="heading"></v-card-title>
+          <v-card v-if="!contactId">
+            <v-card-title class="justify-center" v-text="heading1"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
               <template v-slot:action="{ attrs }">
@@ -33,6 +33,46 @@
               </v-card-actions>
             </v-form>
           </v-card>
+          <v-card v-else>
+            <v-card-title class="justify-center" v-text="heading2"></v-card-title>
+            <v-snackbar :color="snackbarBcg" v-model="snackbar">
+              {{message}}
+              <template v-slot:action="{ attrs }">
+                <v-btn v-bind="attrs" @click="snackbar = false">Close</v-btn>
+              </template>
+            </v-snackbar>
+            <v-form ref="form" @submit.prevent="updateContact">
+              <v-card-text>
+                <v-text-field
+                  :type="'text'"
+                  v-model="formData.name"
+                  label="Name"
+                  :rules="nameRules"
+                />
+                <v-text-field
+                  :type="'email'"
+                  label="Email Id"
+                  v-model="formData.email"
+                  :rules="emailRules"
+                />
+                <v-text-field
+                  :type="'text'"
+                  label="Phone Numer"
+                  v-model="formData.phone"
+                  :rules="phoneRules"
+                />
+              </v-card-text>
+              <v-card-actions>
+                <v-container>
+                  <v-row>
+                    <v-col>
+                      <v-btn class="ma-1" :type="'submit'" depressed>Submit</v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-actions>
+            </v-form>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -47,7 +87,8 @@ export default {
   name: "UpdateContacts",
   data() {
     return {
-      heading: "Add Contacts",
+      heading1: "Add Contacts",
+      heading2: "Update Contacts",
       name: "",
       email: "",
       phone: "",
@@ -68,15 +109,24 @@ export default {
       ],
       phoneRules: [
         (v) => !!v || "Phone Number is required",
-        (v) => (/^[0-9-]+$/).test(v) || "Phone number is not valid",
+        (v) => /^[0-9-]+$/.test(v) || "Phone number is not valid",
       ],
     };
   },
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(["getUser", "getFormData"]),
     user() {
-        return this.getUser
-    }
+      return this.getUser;
+    },
+    contactId() {
+      return this.$route.params.contactid;
+    },
+    userId() {
+      return this.$route.params.userid;
+    },
+    formData() {
+      return this.getFormData;
+    },
   },
   methods: {
     addContact() {
@@ -88,6 +138,32 @@ export default {
             name: this.name,
             email: this.email,
             phone: this.phone,
+          })
+          .then((doc) => {
+            this.name = "";
+            this.email = "";
+            this.phone = "";
+            console.log(doc);
+            this.$router.push("/contacts");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.message = error.message;
+            this.snackbar = true;
+            this.snackbarBcg = "orange";
+          });
+      }
+    },
+    updateContact() {
+      if (this.$refs.form.validate()) {
+        db.collection("users")
+          .doc(this.userId)
+          .collection("contacts")
+          .doc(this.contactId)
+          .update({
+            name: this.formData.name,
+            email: this.formData.email,
+            phone: this.formData.phone,
           })
           .then((doc) => {
             this.name = "";

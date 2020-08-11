@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-4">
+  <v-container class="pa-4" style="width: 350px; height: 200px" :style="{width: w}">
     <v-row no-gutters>
       <v-col cols="10">
         <div>
@@ -17,19 +17,20 @@
         </div>
       </v-col>
       <v-col>
-        <v-row>
+        <v-row justify="space-between">
           <v-col class="text-center">
-            <v-btn icon>
-              <v-icon>mdi-arrow-expand-all</v-icon>
+            <v-btn icon @click="contactExpand">
+              <v-icon v-if="this.w==='350px'">mdi-arrow-right</v-icon>
+              <v-icon v-else>mdi-arrow-left</v-icon>
             </v-btn>
           </v-col>
           <v-col class="text-center">
-            <v-btn icon>
+            <v-btn icon :disabled="btnDisable" @click="contactEdit">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-col>
           <v-col class="text-center">
-            <v-btn icon>
+            <v-btn icon :disabled="btnDisable" @click="contactDelete">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-col>
@@ -42,6 +43,36 @@
 <script>
 export default {
   name: "ContactVue",
-  props: ["contact"],
+  props: ["contact", "getUser"],
+  computed: {
+    btnDisable() {
+      if (this.getUser) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+  },
+  data() {
+    return {
+      bcg: "blue",
+      w: "350px",
+    };
+  },
+  methods: {
+    contactDelete() {
+      this.$emit("contactDelete", this.contact.id);
+    },
+    contactExpand() {
+      if (this.w === "350px") {
+        this.w = "600px";
+      } else {
+        this.w = "350px";
+      }
+    },
+    contactEdit() {
+      this.$emit("contactEdit", this.contact);
+    },
+  },
 };
 </script>

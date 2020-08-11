@@ -2,37 +2,45 @@ import db from '../../db.js';
 
 
 const state = {
-    contacts: [        {
-        name: "Police",
-        phone: "100",
-        email: "police@gov.in",
-        id: "1"
-      },
-      {
-        name: "Ambulance",
-        phone: "101",
-        email: "ambulance@gov.in",
-        id: "2"
-      },
-      {
-        name: "Fire",
-        phone: "102",
-        email: "fire_departemnt@gov.in",
-        id: "3"
-      }],
     user: null,
-    username: null
+    username: null,
+    contacts: [{
+            name: "Police",
+            phone: "100",
+            email: "police@gov.in",
+            id: "1"
+        },
+        {
+            name: "Ambulance",
+            phone: "101",
+            email: "ambulance@gov.in",
+            id: "2"
+        },
+        {
+            name: "Fire",
+            phone: "102",
+            email: "fire_departemnt@gov.in",
+            id: "3"
+        }
+    ],
+    formData: {
+        name: "",
+        email: "",
+        phone: ""
+    },
 }
 
 const getters = {
-    getContacts: (state) => state.contacts,
     getUser: (state) => state.user,
     getUsername: (state) => state.username,
+    getContacts: (state) => state.contacts,
+    getFormData: (state) => state.formData,
 }
 
 const actions = {
     onMounted({
-        commit, dispatch
+        commit,
+        dispatch
     }) {
         console.log('updating user on mount')
         db.app.auth().onAuthStateChanged((user) => {
@@ -75,6 +83,10 @@ const actions = {
         console.log('action commiting contacts');
         commit('setContacts', contacts);
     },
+
+    updateFormData({commit}, formData) {
+        commit('setFormData', formData);
+    }
 };
 
 const mutations = {
@@ -90,6 +102,11 @@ const mutations = {
             console.log('username changed in mutation');
             state.username = user.displayName;
         }
+    },
+
+    setFormData: (state, formData) => {
+        console.log('form changed in mutation');
+        state.formData = formData;
     }
 };
 
