@@ -42,7 +42,6 @@ const actions = {
         commit,
         dispatch
     }) {
-        console.log('updating user on mount')
         db.app.auth().onAuthStateChanged((user) => {
             if (user) {
                 dispatch('fetchContacts', user.uid);
@@ -55,7 +54,6 @@ const actions = {
     updateUser({
         commit
     }, user) {
-        console.log('action commiting user');
         commit('setUser', user);
     },
 
@@ -63,7 +61,6 @@ const actions = {
         commit
     }, userId) {
         let contactsArr = [];
-        console.log('contact action triggered');
         db.collection("users").doc(userId).collection("contacts").onSnapshot((snapshot) => {
             snapshot.forEach((el) => {
                 contactsArr.push({
@@ -85,14 +82,12 @@ const actions = {
                 }
             });
         })
-        console.log(contactsArr);
         commit('setContacts', contactsArr);
     },
 
     updateContacts({
         commit
     }, contacts) {
-        console.log('action commiting contacts');
         commit('setContacts', contacts);
     },
 
@@ -105,21 +100,17 @@ const actions = {
 
 const mutations = {
     setContacts: (state, contacts) => {
-        console.log('muatating contact');
         state.contacts = contacts;
     },
 
     setUser: (state, user) => {
-        console.log('user changed in mutation');
         state.user = user;
         if (user !== undefined && user.displayName) {
-            console.log('username changed in mutation');
             state.username = user.displayName;
         }
     },
 
     setFormData: (state, formData) => {
-        console.log('form changed in mutation');
         state.formData = formData;
     }
 };

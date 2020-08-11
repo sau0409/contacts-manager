@@ -3,7 +3,7 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card>
+          <v-card :loading="loading">
             <v-card-title class="justify-center" v-text="heading"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
@@ -40,7 +40,7 @@
 
 <script>
 import db from "../db.js";
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
   name: "Login",
@@ -54,29 +54,30 @@ export default {
       snackbarBcg: "black",
       emailRules: [(v) => !!v || "E-mail is required"],
       passwordRules: [(v) => !!v || "Password is required"],
+      loading: false
     };
   },
   methods: {
-    ...mapActions(['updateUser']),
+    ...mapActions(["updateUser"]),
     authenticate() {
       if (this.$refs.form.validate()) {
-        console.log("logging in user");
+        this.loading = true;
         db.app
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then((user) => {
-            console.log("logged in");
-            console.log(user);
-           // this.updateUser(user);
+            this.updateUser(user);
             this.email = "";
             this.password = "";
+            this.loading = false;
             this.$router.push("/");
           })
           .catch((error) => {
+            this.loading = false;
             console.log(error);
             this.message = error.message;
             this.snackbar = true;
-            this.snackbarBcg = 'orange';
+            this.snackbarBcg = "orange";
           });
       }
     },

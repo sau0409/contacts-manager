@@ -24,11 +24,9 @@ export default {
   computed: {
     ...mapGetters(["getUser", "getUsername"]),
     user() {
-      console.log("user changed in navigation");
       return this.getUser;
     },
     username() {
-      console.log("username changed in navigation");
       return this.getUsername
     }
   },
@@ -39,7 +37,6 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          console.log("looginf out");
           this.updateUser();
           this.updateContacts([
         {

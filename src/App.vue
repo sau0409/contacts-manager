@@ -21,7 +21,6 @@ export default {
     ...mapGetters(["getUser"]),
   },
   mounted() {
-    console.log("on mounted");
     this.onMounted();
   },
 };

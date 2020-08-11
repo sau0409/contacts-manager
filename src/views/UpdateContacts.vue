@@ -3,7 +3,7 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card v-if="!contactId">
+          <v-card v-if="!contactId" :loading="loading">
             <v-card-title class="justify-center" v-text="heading1"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
@@ -33,7 +33,7 @@
               </v-card-actions>
             </v-form>
           </v-card>
-          <v-card v-else>
+          <v-card v-else :loading="loading">
             <v-card-title class="justify-center" v-text="heading2"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
@@ -92,6 +92,7 @@ export default {
       name: "",
       email: "",
       phone: "",
+      loading: false,
       snackbar: false,
       snackbarBcg: "black",
       message: "",
@@ -131,6 +132,7 @@ export default {
   methods: {
     addContact() {
       if (this.$refs.form.validate()) {
+        this.loading = true;
         db.collection("users")
           .doc(this.user.uid)
           .collection("contacts")
@@ -139,14 +141,15 @@ export default {
             email: this.email,
             phone: this.phone,
           })
-          .then((doc) => {
+          .then(() => {
             this.name = "";
             this.email = "";
             this.phone = "";
-            console.log(doc);
+            this.loading = false;
             this.$router.push("/contacts");
           })
           .catch((error) => {
+            this.loading = false;
             console.log(error);
             this.message = error.message;
             this.snackbar = true;
@@ -156,6 +159,7 @@ export default {
     },
     updateContact() {
       if (this.$refs.form.validate()) {
+        this.loading = true;
         db.collection("users")
           .doc(this.userId)
           .collection("contacts")
@@ -165,14 +169,15 @@ export default {
             email: this.formData.email,
             phone: this.formData.phone,
           })
-          .then((doc) => {
+          .then(() => {
             this.name = "";
             this.email = "";
             this.phone = "";
-            console.log(doc);
+            this.loading = false;
             this.$router.push("/contacts");
           })
           .catch((error) => {
+            this.loading = false;
             console.log(error);
             this.message = error.message;
             this.snackbar = true;

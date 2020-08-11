@@ -3,7 +3,7 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card>
+          <v-card :loading="loading">
             <v-card-title class="justify-center" v-text="heading"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
@@ -52,6 +52,7 @@ export default {
       username: "",
       email: "",
       password: "",
+      loading: false,
       snackbar: false,
       snackbarBcg: "black",
       message: "",
@@ -78,7 +79,7 @@ export default {
     ...mapActions(["updateUser", 'onMounted']),
     registerUser() {
       if (this.$refs.form.validate()) {
-        console.log("Registering user");
+        this.loading = true;
         db.app
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password)
@@ -88,12 +89,12 @@ export default {
                 displayName: this.username,
               })
               .then(() => {
-                console.log(userCred.user.displayName);
-                console.log('triggered action from register');
                 this.updateUser(userCred.user);
+                this.loading = false;
                 this.$router.push("/");
               })
               .catch((error) => {
+                this.loading = false;
                 console.log(error);
                 this.message = error.message;
                 this.snackbar = true;

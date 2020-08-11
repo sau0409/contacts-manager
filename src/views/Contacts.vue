@@ -101,13 +101,11 @@ export default {
       if (this.search != undefined) {
         const fuse = new Fuse(this.contacts, fuseOptions);
         const res = fuse.search(this.search);
-        console.log(res);
         return res;
       } else {
         let nsearch = "."
         const fuse = new Fuse(this.contacts, fuseOptions);
         const res = fuse.search(nsearch);
-        console.log(res);
         return res;
       }
     },
@@ -121,7 +119,6 @@ export default {
   },
   created() {
     if (this.getUser) {
-      console.log("triggeting fetch contact");
       this.fetchContacts(this.getUser.uid);
     }
   },
