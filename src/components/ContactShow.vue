@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     contactDelete() {
-      this.$emit("contactDelete", this.contact.id);
+      this.$emit("contactDelete", this.contact.item.id);
     },
     contactExpand() {
       if (this.w === "350px") {

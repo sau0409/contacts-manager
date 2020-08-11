@@ -68,7 +68,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["name", "phone", "email"]),
+    ...mapActions(["fetchContacts", "onMounted", "updateFormData"]),
     contactDelete(id) {
       db.collection("users")
         .doc(this.getUser.uid)
@@ -79,11 +79,11 @@ export default {
     },
     contactEdit(contact) {
       this.updateFormData({
-        name: contact.name,
-        email: contact.email,
-        phone: contact.phone,
+        name: contact.item.name,
+        email: contact.item.email,
+        phone: contact.item.phone,
       });
-      this.$router.push("/updatecontacts/" + this.user.uid + "/" + contact.id);
+      this.$router.push("/updatecontacts/" + this.user.uid + "/" + contact.item.id);
     },
   },
   computed: {
