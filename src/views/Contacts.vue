@@ -1,9 +1,9 @@
 <template>
   <div class="contacts">
     <v-container style="width: 500px">
-      <v-card style="height: 65px">
+      <v-card color="#f0ad94" style="height: 65px">
         <v-autocomplete
-          color="blue"
+          color="#f0ad94"
           solo
           class="pa-2"
           :search-input.sync="search"
@@ -17,6 +17,7 @@
         <v-col cols="12">
           <v-row no-gutters justify="start">
             <v-card
+              color="hsl(0, 38%, 97%)"
               v-if="getUser"
               style="width: 350px; height: 200px"
               :to="'/updatecontacts/'+user.uid"
@@ -26,13 +27,18 @@
                 <v-row>
                   <v-col>
                     <v-btn icon text>
-                      <v-icon size="100">mdi-plus-circle</v-icon>
+                      <v-icon color="#f0ad94" size="100">mdi-plus-circle</v-icon>
                     </v-btn>
                   </v-col>
                 </v-row>
               </v-container>
             </v-card>
-            <v-card v-for="(contact) in filteredContacts" :key="contact.item.id" class="ma-5">
+            <v-card
+              color="hsl(0, 38%, 98%)"
+              v-for="(contact) in filteredContacts"
+              :key="contact.item.id"
+              class="ma-5"
+            >
               <div>
                 <ContactShow
                   :contact="contact"
@@ -83,7 +89,9 @@ export default {
         email: contact.item.email,
         phone: contact.item.phone,
       });
-      this.$router.push("/updatecontacts/" + this.user.uid + "/" + contact.item.id);
+      this.$router.push(
+        "/updatecontacts/" + this.user.uid + "/" + contact.item.id
+      );
     },
   },
   computed: {
@@ -103,7 +111,7 @@ export default {
         const res = fuse.search(this.search);
         return res;
       } else {
-        let nsearch = "."
+        let nsearch = ".";
         const fuse = new Fuse(this.contacts, fuseOptions);
         const res = fuse.search(nsearch);
         return res;
@@ -112,10 +120,10 @@ export default {
   },
   watch: {
     search(newValue) {
-      if(newValue == "") {
+      if (newValue == "") {
         this.search = ".";
       }
-    }
+    },
   },
   created() {
     if (this.getUser) {

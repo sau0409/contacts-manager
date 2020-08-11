@@ -1,15 +1,15 @@
 <template>
   <div class="navigation">
-    <v-app-bar dense>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <router-link to="/" class="title">Contacts Manager</router-link>
+    <v-app-bar color="#f0ad94" dark dense>
+      <v-toolbar-title class="ml-4">
+        
+        <router-link to="/" class="title"><v-icon>mdi-contacts</v-icon>Contacts Manager</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" text>HOME</v-btn>
       <v-btn to="/login" v-if="!user" v-cloak text>LOGIN</v-btn>
       <v-btn to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
-      <v-btn to="/profile" v-if="user" v-cloak text>{{username}}</v-btn>
+      <v-btn :to="'/profile/'+user.uid" v-if="user" v-cloak text>{{username}}</v-btn>
       <v-btn v-if="user" @click="logOut" v-cloak text>LOGOUT</v-btn>
     </v-app-bar>
   </div>
@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .title {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 

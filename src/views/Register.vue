@@ -3,8 +3,15 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card :loading="loading">
-            <v-card-title class="justify-center" v-text="heading"></v-card-title>
+          <v-card color="hsl(0, 38%, 98%)">
+            <v-progress-linear
+              :active="loading"
+              :indeterminate="loading"
+              absolute
+              top
+              color="deep-purple accent-4"
+            ></v-progress-linear>
+            <v-card-title class="justify-center text--secondary font-weight-bold" v-text="heading"></v-card-title>
             <v-snackbar :color="snackbarBcg" v-model="snackbar">
               {{message}}
               <template v-slot:action="{ attrs }">
@@ -14,7 +21,7 @@
             <v-form ref="form" @submit.prevent="registerUser">
               <v-card-text>
                 <v-text-field :type="'text'" v-model="username" label="Name" :rules="nameRules" />
-                <v-text-field :type="'email'" label="Email" v-model="email" :rules="emailRules" />
+                <v-text-field :type="'email'" label="Email Id" v-model="email" :rules="emailRules" />
                 <v-text-field
                   :type="'password'"
                   label="Password"
@@ -27,7 +34,7 @@
                 <v-container>
                   <v-row>
                     <v-col>
-                      <v-btn class="ma-1" :type="'submit'" depressed>Register</v-btn>
+                      <v-btn dark color="#f0ad94"  class="ma-1" :type="'submit'" depressed>Register</v-btn>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -86,7 +93,7 @@ export default {
           .then((userCred) => {
             userCred.user
               .updateProfile({
-                displayName: this.username,
+                displayName: this.username
               })
               .then(() => {
                 this.updateUser(userCred.user);

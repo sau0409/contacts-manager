@@ -26,7 +26,7 @@ Vue.use(VueRouter)
     component: Register
   },
   {
-    path: '/profile',
+    path: '/profile/:userid',
     name: 'Profile',
     component: Profile
   },

@@ -54,6 +54,7 @@ const actions = {
     updateUser({
         commit
     }, user) {
+        console.log('updating user')
         commit('setUser', user);
     },
 
@@ -107,6 +108,9 @@ const mutations = {
         state.user = user;
         if (user !== undefined && user.displayName) {
             state.username = user.displayName;
+        }
+        else {
+            state.username = null;
         }
     },
 

@@ -3,16 +3,25 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="6">
-          <v-card>
-            <v-card-title class="justify-center" v-text="heading"></v-card-title>
-            <v-card-text v-text="description"></v-card-text>
+          <v-card color="hsl(0, 38%, 97%)">
+            <v-card-title class="justify-center text--secondary font-weight-bold" v-text="heading"></v-card-title>
+            <v-card-text>
+              This simple app manages contacts, allows people to add, update or delete contacts. It's a good example of a Single Page Application which includes connection to a database and routing. It's a practical way to learn
+              <a href="https://vuejs.org/" target="_blank" style="text-decoration: none">
+                <strong>VueJs</strong>
+              </a>, <a href="https://vuex.vuejs.org/" target="_blank" style="text-decoration: none">
+                <strong>Vuex</strong>
+              </a>, <a href="https://vuetifyjs.com/en/" target="_blank" style="text-decoration: none">
+                <strong>Vuetify</strong>
+              </a> and <a href="https://firebase.google.com/" target="_blank" style="text-decoration: none">
+                <strong>Firebase</strong>
+              </a>.
+            </v-card-text>
             <v-card-actions>
               <v-container>
                 <v-row>
                   <v-col>
-                    <v-btn class="ma-1" depressed to="/contacts">Contacts</v-btn>
-                    <v-btn class="ma-1" v-if="!user" depressed to="/login">Login</v-btn>
-                    <v-btn class="ma-1" v-if="!user" depressed to="/register">Register</v-btn>
+                    <v-btn class="ma-1" dark color="#f0ad94" depressed to="/contacts">Contacts</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -33,14 +42,21 @@ export default {
     return {
       heading: "Contacts Manager",
       description:
-        "This simple app manages contacts, allows people to add, update or delete contacts. It's a good example of a Single Page Application which includes connection to a database and routing. It's a practical way to learn VueJs and Firebase.",
+        "This simple app manages contacts, allows people to add, update or delete contacts. It's a good example of a Single Page Application which includes connection to a database and routing. It's a practical way to learn <strong>VueJs</strong>, Vuex, Vuetify and Firebase.",
     };
   },
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(["getUser"]),
     user() {
-      return this.getUser
-    }
-  }
+      return this.getUser;
+    },
+  },
 };
 </script>
+
+
+<style scoped>
+.home {
+  background-color: #fceee9;
+}
+</style>

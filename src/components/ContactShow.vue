@@ -5,13 +5,11 @@
         <div>
           <div class="text-h6">{{contact.item.name}}</div>
           <div class="pa-2">
-            <div>
-              <div class="text-subtitle-2">Phone Number</div>
-              <div class="text-body-2">{{contact.item.phone}}</div>
+            <div class="mt-4">
+              <div class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-phone</v-icon><span class="ml-5">{{contact.item.phone}}</span></div>
             </div>
-            <div>
-              <div class="text-subtitle-2">Email Id</div>
-              <div class="text-body-2">{{contact.item.email}}</div>
+            <div class="mt-4">
+              <div  class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-email</v-icon><span class="ml-5">{{contact.item.email}}</span></div>
             </div>
           </div>
         </div>
@@ -20,18 +18,18 @@
         <v-row justify="space-between">
           <v-col class="text-center">
             <v-btn icon @click="contactExpand">
-              <v-icon v-if="this.w==='350px'">mdi-arrow-right</v-icon>
-              <v-icon v-else>mdi-arrow-left</v-icon>
+              <v-icon color="#f0ad94" v-if="this.w==='350px'">mdi-arrow-right</v-icon>
+              <v-icon color="#f0ad94" v-else>mdi-arrow-left</v-icon>
             </v-btn>
           </v-col>
           <v-col class="text-center">
             <v-btn icon :disabled="btnDisable" @click="contactEdit">
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon color="#f0ad94">mdi-pencil</v-icon>
             </v-btn>
           </v-col>
           <v-col class="text-center">
             <v-btn icon :disabled="btnDisable" @click="contactDelete">
-              <v-icon>mdi-delete</v-icon>
+              <v-icon hint="delete contact" color="#f0ad94">mdi-delete</v-icon>
             </v-btn>
           </v-col>
         </v-row>
