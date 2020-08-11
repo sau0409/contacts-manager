@@ -3,15 +3,15 @@
     <v-row no-gutters>
       <v-col cols="10">
         <div>
-          <div class="text-h6">{{contact.name}}</div>
+          <div class="text-h6">{{contact.item.name}}</div>
           <div class="pa-2">
             <div>
               <div class="text-subtitle-2">Phone Number</div>
-              <div class="text-body-2">{{contact.phone}}</div>
+              <div class="text-body-2">{{contact.item.phone}}</div>
             </div>
             <div>
               <div class="text-subtitle-2">Email Id</div>
-              <div class="text-body-2">{{contact.email}}</div>
+              <div class="text-body-2">{{contact.item.email}}</div>
             </div>
           </div>
         </div>

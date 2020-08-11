@@ -1,5 +1,17 @@
 <template>
   <div class="contacts">
+    <v-container style="width: 500px">
+      <v-card style="height: 65px">
+        <v-autocomplete
+          color="blue"
+          solo
+          class="pa-2"
+          :search-input.sync="search"
+          hide-no-data
+          placeholder="Start typing to Search"
+        ></v-autocomplete>
+      </v-card>
+    </v-container>
     <v-container fluid>
       <v-row>
         <v-col cols="12">
@@ -20,16 +32,9 @@
                 </v-row>
               </v-container>
             </v-card>
-            <v-card
-              v-for="(contact) in contacts"
-              :key="contact.id"
-              
-              
-              class="ma-5"
-            >
+            <v-card v-for="(contact) in filteredContacts" :key="contact.item.id" class="ma-5">
               <div>
                 <ContactShow
-                
                   :contact="contact"
                   @contactEdit="contactEdit"
                   @contactDelete="contactDelete"
@@ -48,6 +53,7 @@
 import { mapActions, mapGetters } from "vuex";
 import ContactShow from "../components/ContactShow.vue";
 import db from "../db.js";
+import Fuse from "fuse.js";
 
 export default {
   name: "Contacts",
@@ -58,10 +64,11 @@ export default {
     return {
       heading: "Contacts",
       bcg: "blue",
+      search: ".",
     };
   },
   methods: {
-    ...mapActions(["fetchContacts", "onMounted", "updateFormData"]),
+    ...mapActions(["name", "phone", "email"]),
     contactDelete(id) {
       db.collection("users")
         .doc(this.getUser.uid)
@@ -74,9 +81,9 @@ export default {
       this.updateFormData({
         name: contact.name,
         email: contact.email,
-        phone: contact.phone
-      })
-      this.$router.push('/updatecontacts/'+this.user.uid+'/'+contact.id);
+        phone: contact.phone,
+      });
+      this.$router.push("/updatecontacts/" + this.user.uid + "/" + contact.id);
     },
   },
   computed: {
@@ -87,6 +94,30 @@ export default {
     contacts() {
       return this.getContacts;
     },
+    filteredContacts() {
+      let fuseOptions = {
+        keys: ["name", "phone", "email"],
+      };
+      if (this.search != undefined) {
+        const fuse = new Fuse(this.contacts, fuseOptions);
+        const res = fuse.search(this.search);
+        console.log(res);
+        return res;
+      } else {
+        let nsearch = "."
+        const fuse = new Fuse(this.contacts, fuseOptions);
+        const res = fuse.search(nsearch);
+        console.log(res);
+        return res;
+      }
+    },
+  },
+  watch: {
+    search(newValue) {
+      if(newValue == "") {
+        this.search = ".";
+      }
+    }
   },
   created() {
     if (this.getUser) {

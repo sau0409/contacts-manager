@@ -73,7 +73,19 @@ const actions = {
                     id: el.id
                 });
             })
+            contactsArr = contactsArr.sort((a, b) => {
+                const n1 = a.name.toLowerCase();
+                const n2 = b.name.toLowerCase();
+                if (n1 > n2) {
+                    return 1;
+                } else if (n2 > n1) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
         })
+        console.log(contactsArr);
         commit('setContacts', contactsArr);
     },
 
@@ -84,7 +96,9 @@ const actions = {
         commit('setContacts', contacts);
     },
 
-    updateFormData({commit}, formData) {
+    updateFormData({
+        commit
+    }, formData) {
         commit('setFormData', formData);
     }
 };
