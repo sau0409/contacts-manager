@@ -17,7 +17,7 @@
         <v-col cols="12">
           <v-row no-gutters justify="start">
             <v-card
-              color="hsl(0, 38%, 97%)"
+              color="hsl(0, 38%, 98%)"
               v-if="getUser"
               style="width: 350px; height: 200px"
               :to="'/updatecontacts/'+user.uid"

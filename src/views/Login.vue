@@ -3,7 +3,7 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="4">
-          <v-card color="hsl(0, 38%, 97%)">
+          <v-card color="hsl(0, 38%, 98%)">
             <v-progress-linear
               :active="loading"
               :indeterminate="loading"

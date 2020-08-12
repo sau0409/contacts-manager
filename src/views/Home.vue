@@ -3,7 +3,7 @@
     <v-container class="text-center">
       <v-row justify="center">
         <v-col cols="6">
-          <v-card color="hsl(0, 38%, 97%)">
+          <v-card color="hsl(0, 38%, 98%)">
             <v-card-title class="justify-center text--secondary font-weight-bold" v-text="heading"></v-card-title>
             <v-card-text>
               This simple app manages contacts, allows people to add, update or delete contacts. It's a good example of a Single Page Application which includes connection to a database and routing. It's a practical way to learn
