@@ -11,17 +11,21 @@
       </v-btn>
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" text><v-icon>mdi-phone</v-icon></v-btn>
+          <v-btn v-bind="attrs" v-on="on" text>
+            <v-icon>mdi-phone</v-icon>
+          </v-btn>
         </template>
         <span>9044098575</span>
       </v-tooltip>
-       <v-tooltip top>
+      <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" text><v-icon>mdi-email</v-icon></v-btn>
+          <v-btn v-bind="attrs" v-on="on" text>
+            <v-icon>mdi-email</v-icon>
+          </v-btn>
         </template>
         <span>jhasaurabh.9504@gmail.com</span>
       </v-tooltip>
-      <v-col class="text-center" cols="12">
+      <v-col class="text-center animClass" cols="12">
         <strong>Saurabh Jha</strong>
       </v-col>
     </v-footer>
@@ -36,6 +40,12 @@ export default {
   name: "App",
   components: {
     Navigation,
+  },
+  data() {
+    return {
+      myColor: "black",
+      colorChange: false,
+    };
   },
   methods: {
     ...mapActions(["onMounted", "fetchContacts"]),
@@ -53,4 +63,31 @@ export default {
 #app {
   background-color: #f7eeed;
 }
+.animClass {
+  animation-name: change-color;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes change-color {
+  0%{
+    color: black;
+  }
+  20%{
+    color: red;
+  }
+  40%{
+    color: blue;
+  }
+  60%{
+    color: green;
+  }
+  80%{
+    color: brown;
+  }
+  100% {
+    color: orange;
+  }
+}
+
 </style>

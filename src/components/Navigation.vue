@@ -3,7 +3,7 @@
     <v-app-bar color="#f0ad94" dark dense>
       <v-toolbar-title class="ml-4">
         <router-link to="/" class="title">
-          <v-icon>mdi-contacts</v-icon>Contacts Manager
+          <v-icon>mdi-contacts</v-icon><span>Contacts Manager</span>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -89,4 +89,5 @@ export default {
 [v-cloak] {
   display: none;
 }
+
 </style>
