@@ -57,7 +57,5 @@ export default {
 
 
 <style scoped>
-.home {
-  background-color: #fceee9;
-}
+
 </style>

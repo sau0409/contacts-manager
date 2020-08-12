@@ -61,7 +61,7 @@ export default {
 
 <style>
 #app {
-  background-color: #f7eeed;
+  background-color: #fceee9;
 }
 .animClass {
   animation-name: change-color;
