@@ -22,6 +22,7 @@
                 <v-row>
                   <v-col>
                     <v-btn class="ma-1" dark color="#f0ad94" depressed to="/contacts">Contacts</v-btn>
+                    <v-btn class="ma-1" dark color="#f0ad94" depressed href="https://github.com/sau0409/contacts-manager" target="_blank">Github Repo<v-icon right>mdi-github</v-icon></v-btn>
                   </v-col>
                 </v-row>
               </v-container>
