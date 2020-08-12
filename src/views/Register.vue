@@ -18,7 +18,7 @@
                 <v-btn v-bind="attrs" @click="snackbar = false">Close</v-btn>
               </template>
             </v-snackbar>
-            <v-form ref="form" @submit.prevent="registerUser">
+            <v-form class="mt-n5" ref="form" @submit.prevent="registerUser">
               <v-card-text>
                 <v-text-field :type="'text'" v-model="username" label="Name" :rules="nameRules" />
                 <v-text-field :type="'email'" label="Email Id" v-model="email" :rules="emailRules" />
@@ -30,9 +30,9 @@
                 />
                 <v-text-field :type="'password'" label="Confirm Password" :rules="matchPassword" />
               </v-card-text>
-              <v-card-actions>
+              <v-card-actions class="mt-n3">
                 <v-container>
-                  <v-row>
+                  <v-row no-gutters>
                     <v-col>
                       <v-btn dark color="#f0ad94"  class="ma-1" :type="'submit'" depressed>Register</v-btn>
                     </v-col>
