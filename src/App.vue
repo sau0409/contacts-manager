@@ -21,7 +21,6 @@
         </template>
         <span>jhasaurabh.9504@gmail.com</span>
       </v-tooltip>
-      
       <v-col class="text-center" cols="12">
         <strong>Saurabh Jha</strong>
       </v-col>
