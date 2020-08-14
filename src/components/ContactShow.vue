@@ -74,3 +74,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 700px ){
+     .card {
+       width: 250px;
+       height: 200px;
+     }
+}
+</style>

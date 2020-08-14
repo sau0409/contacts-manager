@@ -2,7 +2,7 @@
   <div class="register">
     <v-container class="text-center">
       <v-row justify="center">
-        <v-col cols="4">
+        <v-col cols="md-4">
           <v-card color="hsl(0, 38%, 98%)">
             <v-progress-linear
               :active="loading"

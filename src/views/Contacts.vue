@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <v-container style="width: 500px">
+    <v-container class="searchBs">
       <v-card color="#f0ad94" style="height: 65px">
         <v-autocomplete
           color="#f0ad94"
@@ -12,7 +12,7 @@
         ></v-autocomplete>
       </v-card>
     </v-container>
-    <v-container class="ml-7" fluid>
+    <v-container class="ml-md-7 ml-xs-0" fluid>
       <v-row>
         <v-col cols="12">
           <v-row no-gutters justify="start">
@@ -37,7 +37,7 @@
               color="hsl(0, 38%, 98%)"
               v-for="(contact) in filteredContacts"
               :key="contact.item.id"
-              class="ma-5"
+              class="ma-5 card"
             >
               <div>
                 <ContactShow
@@ -132,3 +132,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 700px ){
+     .card {
+       width: 250px;
+       height: 200px;
+     }
+     .searchBs {
+       width: 300px;
+       height: 200px;
+     }
+}
+@media (min-width: 700px ){
+     .searchBs {
+       width: 500px;
+     }
+}
+</style>

@@ -2,7 +2,7 @@
   <div class="profile mt-15">
     <v-container class="text-center">
       <v-row justify="center">
-        <v-col cols="6">
+        <v-col cols="md-6">
           <v-card color="hsl(0, 38%, 98%)">
             <v-card-title class="justify-center text--secondary font-weight-bold">{{name}}</v-card-title>
             <div>

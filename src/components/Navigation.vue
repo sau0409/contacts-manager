@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
     <v-app-bar color="#f0ad94" dark dense>
-      <v-toolbar-title class="ml-4">
+      <v-toolbar-title class="ml-4 smallSc">
         <router-link to="/" class="title">
           <v-icon>mdi-contacts</v-icon><span>Contacts Manager</span>
         </router-link>
@@ -94,6 +94,11 @@ export default {
 
 [v-cloak] {
   display: none;
+}
+
+.smallSc {
+  display: none;
+  visibility: hidden;
 }
 
 </style>
