@@ -19,9 +19,9 @@
             <v-card
               color="hsl(0, 38%, 98%)"
               v-if="getUser"
-              style="width: 350px; height: 220px"
+              style="width: 320px; height: 200px"
               :to="'/updatecontacts/'+user.uid"
-              class="ma-5"
+              class="ma-4"
             >
               <v-container class="text-center mt-14">
                 <v-row>
@@ -37,7 +37,8 @@
               color="hsl(0, 38%, 98%)"
               v-for="(contact) in filteredContacts"
               :key="contact.item.id"
-              class="ma-5 card"
+              style="width: 320px; height: 200px"
+              class="ma-4"
             >
               <div>
                 <ContactShow
@@ -134,15 +135,14 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 700px ){
-     .searchBs {
-       width: 300px;
-       height: 200px;
-     }
+@media (max-width: 700px) {
+  .searchBs {
+    width: 300px;
+  }
 }
-@media (min-width: 700px ){
-     .searchBs {
-       width: 500px;
-     }
+@media (min-width: 700px) {
+  .searchBs {
+    width: 500px;
+  }
 }
 </style>

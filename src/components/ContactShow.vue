@@ -5,16 +5,16 @@
         <div>
           <div class="text-h6">{{contact.item.name}}</div>
           <div class="pa-2">
-            <div>
-              <div class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-phone</v-icon><span class="ml-1">{{contact.item.phone}}</span></div>
+            <div class="mt-2">
+              <div class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-phone</v-icon><span class="ml-3">{{contact.item.phone}}</span></div>
             </div>
-            <div>
-              <div  class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-email</v-icon><span class="ml-1">{{contact.item.email}}</span></div>
+            <div class="mt-2">
+              <div  class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-email</v-icon><span class="ml-3">{{contact.item.email}}</span></div>
             </div>
           </div>
         </div>
       </v-col>
-      <v-col>
+      <v-col class="ml-n10">
         <v-row>
           <v-col class="text-center">
             <v-btn icon @click="contactExpand">
