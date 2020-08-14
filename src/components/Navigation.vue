@@ -7,12 +7,12 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn to="/" text>HOME</v-btn>
-      <v-btn to="/login" v-if="!user" v-cloak text>LOGIN</v-btn>
-      <v-btn to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
-      <v-menu v-if="user" offset-y>
+      <v-btn class="mr-1" to="/" text>HOME</v-btn>
+      <v-btn class="mr-1" to="/login" v-if="!user" v-cloak text>LOGIN</v-btn>
+      <v-btn class="mr-1" to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
+      <v-menu class="mr-1" v-if="user" offset-y>
         <template v-slot:activator="{ attrs, on }">
-          <v-btn v-bind="attrs" v-on="on" v-cloak text>{{username}}</v-btn>
+          <v-btn v-bind="attrs" v-on="on" v-cloak text>{{username}} <v-icon>mdi-chevron-down</v-icon></v-btn>
         </template>
         <v-list>
           <v-list-item :to="'/profile/'+user.uid" link>
