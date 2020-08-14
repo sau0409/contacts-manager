@@ -135,10 +135,6 @@ export default {
 
 <style scoped>
 @media (max-width: 700px ){
-     .card {
-       width: 250px;
-       height: 200px;
-     }
      .searchBs {
        width: 300px;
        height: 200px;

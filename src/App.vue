@@ -8,28 +8,30 @@
     </div>
     <div class="mt-10">
       <v-footer height="50" absolute class="font-weight-medium">
-        <v-btn text target="_blank" href="https://github.com/sau0409">
-          <v-icon>mdi-github</v-icon>
-        </v-btn>
-        <v-btn text target="_blank" href="https://www.linkedin.com/in/saurabh-jha-21606b143">
-          <v-icon>mdi-linkedin</v-icon>
-        </v-btn>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" text>
-              <v-icon>mdi-phone</v-icon>
-            </v-btn>
-          </template>
-          <span>9044098575</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" text>
-              <v-icon>mdi-email</v-icon>
-            </v-btn>
-          </template>
-          <span>jhasaurabh.9504@gmail.com</span>
-        </v-tooltip>
+        <div class="smC">
+          <v-btn text target="_blank" href="https://github.com/sau0409">
+            <v-icon>mdi-github</v-icon>
+          </v-btn>
+          <v-btn text target="_blank" href="https://www.linkedin.com/in/saurabh-jha-21606b143">
+            <v-icon>mdi-linkedin</v-icon>
+          </v-btn>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on" text>
+                <v-icon>mdi-phone</v-icon>
+              </v-btn>
+            </template>
+            <span>9044098575</span>
+          </v-tooltip>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on" text>
+                <v-icon>mdi-email</v-icon>
+              </v-btn>
+            </template>
+            <span>jhasaurabh.9504@gmail.com</span>
+          </v-tooltip>
+        </div>
         <v-col class="text-center animClass" cols="12">
           <strong>Saurabh Jha</strong>
         </v-col>
@@ -75,6 +77,11 @@ export default {
   animation-iteration-count: infinite;
 }
 
+@media (max-width: 700px) {
+  .smC {
+    margin-left: 20px;
+  }
+}
 @keyframes change-color {
   0% {
     color: black;
