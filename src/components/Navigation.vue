@@ -33,6 +33,11 @@ import db from "../db.js";
 
 export default {
   name: "Navigation",
+  data() {
+    return {
+       error: ""
+    }
+  },
   computed: {
     ...mapGetters(["getUser", "getUsername"]),
     user() {
@@ -73,7 +78,8 @@ export default {
           this.$router.push("/login");
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
+          this.error = error;
         });
     },
   },

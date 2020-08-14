@@ -37,6 +37,7 @@ export default {
   name: "Profile",
   data() {
     return {
+       error: "",
     };
   },
   computed: {
@@ -65,22 +66,19 @@ export default {
   methods: {
     ...mapActions(['updateUser', 'updateContacts']),
     deleteUser() {
-      console.log('deleting user data');
-      console.log(this.uid);
         db.collection("users").doc(this.uid).delete()
         .then(() => {
-          console.log('deleted user data');
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
+          this.error = err;
         })
-        console.log('deleting user');
         db.app.auth().currentUser.delete()
         .then(() => {
-          console.log('deleted user');
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
+          this.error = err;
         })
         this.updateUser();
         this.updateContacts();

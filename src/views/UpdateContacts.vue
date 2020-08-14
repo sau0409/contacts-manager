@@ -106,6 +106,7 @@ export default {
       name: "",
       email: "",
       phone: "",
+      error: "",
       loading: false,
       snackbar: false,
       snackbarBcg: "black",
@@ -164,7 +165,8 @@ export default {
           })
           .catch((error) => {
             this.loading = false;
-            console.log(error);
+            //console.log(error);
+            this.error = error;
             this.message = error.message;
             this.snackbar = true;
             this.snackbarBcg = "orange";
@@ -192,7 +194,8 @@ export default {
           })
           .catch((error) => {
             this.loading = false;
-            console.log(error);
+            //console.log(error);
+            this.error = error;
             this.message = error.message;
             this.snackbar = true;
             this.snackbarBcg = "orange";

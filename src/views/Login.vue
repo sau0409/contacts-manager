@@ -62,6 +62,7 @@ export default {
       emailRules: [(v) => !!v || "E-mail is required"],
       passwordRules: [(v) => !!v || "Password is required"],
       loading: false,
+      error: ""
     };
   },
   methods: {
@@ -81,7 +82,8 @@ export default {
           })
           .catch((error) => {
             this.loading = false;
-            console.log(error);
+            //console.log(error);
+            this.error = error;
             this.message = error.message;
             this.snackbar = true;
             this.snackbarBcg = "orange";

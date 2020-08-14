@@ -54,7 +54,6 @@ const actions = {
     updateUser({
         commit
     }, user) {
-        console.log('updating user')
         commit('setUser', user);
     },
 

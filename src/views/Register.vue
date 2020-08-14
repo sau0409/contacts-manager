@@ -60,6 +60,7 @@ export default {
       email: "",
       password: "",
       loading: false,
+       error: "",
       snackbar: false,
       snackbarBcg: "black",
       message: "",
@@ -102,14 +103,17 @@ export default {
               })
               .catch((error) => {
                 this.loading = false;
-                console.log(error);
+                //console.log(error);
+                this.error = error;
                 this.message = error.message;
                 this.snackbar = true;
                 this.snackbarBcg = "orange";
               });
           })
           .catch((error) => {
-            console.log(error);
+            this.loading = false;
+            this.error = error;
+            //console.log(error);
             this.message = error.message;
             this.snackbar = true;
             this.snackbarBcg = "orange";
