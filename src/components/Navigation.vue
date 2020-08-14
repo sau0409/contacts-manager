@@ -3,7 +3,8 @@
     <v-app-bar color="#f0ad94" dark dense>
       <v-toolbar-title class="ml-4 smallSc">
         <router-link to="/" class="title">
-          <v-icon>mdi-contacts</v-icon><span>Contacts Manager</span>
+          <v-icon>mdi-contacts</v-icon>
+          <span>Contacts Manager</span>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -12,7 +13,10 @@
       <v-btn class="mr-1" to="/register" v-if="!user" v-cloak text>REGISTER</v-btn>
       <v-menu class="mr-1" v-if="user" offset-y>
         <template v-slot:activator="{ attrs, on }">
-          <v-btn v-bind="attrs" v-on="on" v-cloak text>{{username}} <v-icon small>mdi-chevron-down</v-icon></v-btn>
+          <v-btn v-bind="attrs" v-on="on" v-cloak text>
+            {{username}}
+            <v-icon small>mdi-chevron-down</v-icon>
+          </v-btn>
         </template>
         <v-list>
           <v-list-item :to="'/profile/'+user.uid" link>
@@ -35,8 +39,8 @@ export default {
   name: "Navigation",
   data() {
     return {
-       error: ""
-    }
+      error: "",
+    };
   },
   computed: {
     ...mapGetters(["getUser", "getUsername"]),
@@ -96,9 +100,10 @@ export default {
   display: none;
 }
 
-.smallSc {
-  display: none;
-  visibility: hidden;
+@media (max-width: 700px) {
+  .smallSc {
+    display: none;
+    visibility: hidden;
+  }
 }
-
 </style>

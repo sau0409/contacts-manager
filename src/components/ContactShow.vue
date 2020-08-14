@@ -1,21 +1,21 @@
 <template>
-  <v-container class="pa-4"  :style="{width: w}">
+  <v-container class="pa-4" :style="{width: w}">
     <v-row no-gutters>
-      <v-col cols="sm-10">
+      <v-col cols="10">
         <div>
           <div class="text-h6">{{contact.item.name}}</div>
-          <div class="pa-1">
-            <div class="mt-4">
+          <div class="pa-2">
+            <div>
               <div class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-phone</v-icon><span class="ml-1">{{contact.item.phone}}</span></div>
             </div>
-            <div class="mt-4">
+            <div>
               <div  class="text-body-2 text--secondary"><v-icon color="#f0ad94">mdi-email</v-icon><span class="ml-1">{{contact.item.email}}</span></div>
             </div>
           </div>
         </div>
       </v-col>
       <v-col>
-        <v-row justify="center">
+        <v-row>
           <v-col class="text-center">
             <v-btn icon @click="contactExpand">
               <v-icon color="#f0ad94" v-if="this.w==='350px'">mdi-arrow-right</v-icon>

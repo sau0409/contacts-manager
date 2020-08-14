@@ -19,7 +19,7 @@
             <v-card
               color="hsl(0, 38%, 98%)"
               v-if="getUser"
-              style="width: 350px; height: 200px"
+              style="width: 350px; height: 220px"
               :to="'/updatecontacts/'+user.uid"
               class="ma-5"
             >
