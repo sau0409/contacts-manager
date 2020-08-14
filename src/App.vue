@@ -17,7 +17,7 @@
           </v-btn>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" text>
+              <v-btn v-bind="attrs" v-on="on" href="tel:9044098575" text>
                 <v-icon>mdi-phone</v-icon>
               </v-btn>
             </template>
@@ -25,7 +25,7 @@
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" text>
+              <v-btn v-bind="attrs" href="mailto:jhasaurabh.9504@gmail.com" v-on="on" text>
                 <v-icon>mdi-email</v-icon>
               </v-btn>
             </template>
