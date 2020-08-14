@@ -12,7 +12,7 @@
         ></v-autocomplete>
       </v-card>
     </v-container>
-    <v-container fluid>
+    <v-container class="ml-7" fluid>
       <v-row>
         <v-col cols="12">
           <v-row no-gutters justify="start">
