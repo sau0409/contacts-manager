@@ -12,14 +12,14 @@
         ></v-autocomplete>
       </v-card>
     </v-container>
-    <v-container class="ml-md-7 ml-xs-0" fluid>
+    <v-container fluid>
       <v-row>
         <v-col cols="12">
-          <v-row no-gutters justify="start">
+          <v-row no-gutters justify="center">
             <v-card
               color="hsl(0, 38%, 98%)"
               v-if="getUser"
-              style="width: 350px; height: 220px"
+              style="width: 280px; height: 220px"
               :to="'/updatecontacts/'+user.uid"
               class="ma-4"
             >
@@ -136,7 +136,7 @@ export default {
 <style scoped>
 @media (max-width: 700px) {
   .searchBs {
-    width: 300px;
+    width: 280px;
   }
 }
 @media (min-width: 700px) {

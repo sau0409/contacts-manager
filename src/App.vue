@@ -79,7 +79,7 @@ export default {
 
 @media (max-width: 700px) {
   .smC {
-    margin-left: 20px;
+    margin-left: 0px;
   }
 }
 @keyframes change-color {
