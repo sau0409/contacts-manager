@@ -19,7 +19,7 @@
             <v-card
               color="hsl(0, 38%, 98%)"
               v-if="getUser"
-              style="width: 320px; height: 200px"
+              style="width: 350px; height: 220px"
               :to="'/updatecontacts/'+user.uid"
               class="ma-4"
             >
@@ -37,7 +37,6 @@
               color="hsl(0, 38%, 98%)"
               v-for="(contact) in filteredContacts"
               :key="contact.item.id"
-              style="width: 320px; height: 200px"
               class="ma-4"
             >
               <div>
