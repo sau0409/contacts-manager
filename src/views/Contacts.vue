@@ -19,14 +19,14 @@
             <v-card
               color="hsl(0, 38%, 98%)"
               v-if="getUser"
-              style="width: 280px; height: 220px"
+              style="width: 350px; height: 250px"
               :to="'/updatecontacts/'+user.uid"
               class="ma-4"
             >
-              <v-container class="text-center mt-14">
+              <v-container class="text-center mt-16">
                 <v-row>
                   <v-col>
-                    <v-btn icon text>
+                    <v-btn class="mt-6" icon text>
                       <v-icon color="#f0ad94" size="100">mdi-plus-circle</v-icon>
                     </v-btn>
                   </v-col>
